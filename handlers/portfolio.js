@@ -7,6 +7,7 @@
  *     parameters:
  *       - in: query
  *         name: type
+ *         required: true
  *         schema:
  *           type: string
  *           enum: [Draft, Icon, KOFWarrior, MetalSlugCommander, TopGirl]
