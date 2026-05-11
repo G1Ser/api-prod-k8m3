@@ -1,7 +1,8 @@
-import { CORS_ORIGINS } from '@/config/constants';
-// 验证来源是否在白名单中
+// 验证是否是chauncey.work下面的网站
 export const isAllowedOrigin = (origin: string) => {
-  return CORS_ORIGINS.includes(origin);
+  if (!origin) return false;
+  const { hostname } = new URL(origin);
+  return hostname.endsWith('chauncey.work');
 };
 // 提取公共的 CORS 头生成函数
 export const getCORSHeaders = (origin: string) => {
