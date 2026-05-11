@@ -1,7 +1,7 @@
 {
-  "name": "wt-prod-k8m3",
-  "version": "1.0.0",
-  "description": "天气项目后端代码",
+  "name": "api-prod-k8m3",
+  "version": "2.0.0",
+  "description": "后端接口",
   "main": "src/index.ts",
   "type": "module",
   "keywords": [
