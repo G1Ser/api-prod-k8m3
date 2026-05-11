@@ -1,8 +1,8 @@
-﻿import { MINUTE } from "../constants";
-import { handleIPQuery } from "@/handlers/ip";
+﻿import { MINUTE } from '../constants';
+import { handleIPQuery } from '@/handlers/ip';
 
 const IP_ROUTES_MAP = {
-  "/ip": handleIPQuery,
+  '/ip': handleIPQuery,
 };
 
 const IP_CACHE_TTL = {

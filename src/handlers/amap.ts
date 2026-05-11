@@ -1,18 +1,14 @@
-import { Env } from "@/types/env";
-import { AMAP_BASE_URL, AMAP_CACHE_TTL } from "@/config/providers/amap";
-import { createErrorResponse } from "@/utils/response";
-import { getResponseData } from "@/utils/cache";
-export const handleWeatherQuery = async (
-  request: Request,
-  env: Env,
-  origin: string,
-) => {
+import { Env } from '@/types/env';
+import { AMAP_BASE_URL, AMAP_CACHE_TTL } from '@/config/providers/amap';
+import { createErrorResponse } from '@/utils/response';
+import { getResponseData } from '@/utils/cache';
+export const handleWeatherQuery = async (request: Request, env: Env, origin: string) => {
   if (!env.AMAP_KEY) {
-    return createErrorResponse("Configuration Error", "AMAP_KEY is not set");
+    return createErrorResponse('Configuration Error', 'AMAP_KEY is not set');
   }
   const url = new URL(request.url);
-  const city = url.searchParams.get("city") || "";
-  const extensions = url.searchParams.get("extensions") || "base";
+  const city = url.searchParams.get('city') || '';
+  const extensions = url.searchParams.get('extensions') || 'base';
   const cacheKey = `amap_weather:${city}:${extensions}`;
   const cacheTtl = AMAP_CACHE_TTL.WEATHER;
   return getResponseData(

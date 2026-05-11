@@ -1,8 +1,8 @@
-import { MINUTE } from "../constants";
-import { handleWeatherQuery } from "@/handlers/amap";
-const AMAP_BASE_URL = "https://restapi.amap.com/v3";
+import { MINUTE } from '../constants';
+import { handleWeatherQuery } from '@/handlers/amap';
+const AMAP_BASE_URL = 'https://restapi.amap.com/v3';
 const AMAP_ROUTES_MAP = {
-  "/amap/weather": handleWeatherQuery,
+  '/amap/weather': handleWeatherQuery,
 };
 const AMAP_CACHE_TTL = {
   WEATHER: {

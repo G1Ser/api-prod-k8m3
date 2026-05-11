@@ -1,30 +1,24 @@
-import { Env } from "@/types/env";
-import {
-  QWEATHER_BASE_URL,
-  QWEATHER_CACHE_TTL,
-} from "@/config/providers/qweather";
-import { createErrorResponse } from "@/utils/response";
-import { getResponseData } from "@/utils/cache";
+import { Env } from '@/types/env';
+import { QWEATHER_BASE_URL, QWEATHER_CACHE_TTL } from '@/config/providers/qweather';
+import { createErrorResponse } from '@/utils/response';
+import { getResponseData } from '@/utils/cache';
 const validateQWeatherParams = (request: Request, env: Env) => {
   if (!env.QWEATHER_KEY) {
     return {
       success: false,
-      error: createErrorResponse(
-        "Configuration Error",
-        "QWEATHER_KEY is not set",
-      ),
+      error: createErrorResponse('Configuration Error', 'QWEATHER_KEY is not set'),
     };
   }
   const url = new URL(request.url);
-  const lon = url.searchParams.get("lon") || "";
-  const lat = url.searchParams.get("lat") || "";
-  const lang = url.searchParams.get("lang") || "zh";
-  const unit = url.searchParams.get("unit") || "m";
+  const lon = url.searchParams.get('lon') || '';
+  const lat = url.searchParams.get('lat') || '';
+  const lang = url.searchParams.get('lang') || 'zh';
+  const unit = url.searchParams.get('unit') || 'm';
   if (!lon || !lat) {
     return {
       success: false,
       error: createErrorResponse(
-        "Missing Parameters",
+        'Missing Parameters',
         "Both 'lon' and 'lat' parameters are required.",
         400,
       ),
@@ -32,11 +26,7 @@ const validateQWeatherParams = (request: Request, env: Env) => {
   }
   return { success: true, data: { lon, lat, lang, unit } };
 };
-export const handleWeatherNowQuery = async (
-  request: Request,
-  env: Env,
-  origin: string,
-) => {
+export const handleWeatherNowQuery = async (request: Request, env: Env, origin: string) => {
   const validation = validateQWeatherParams(request, env);
   if (!validation.success) {
     return validation.error;
@@ -56,18 +46,14 @@ export const handleWeatherNowQuery = async (
   );
 };
 
-export const handleWeatherForecastQuery = async (
-  request: Request,
-  env: Env,
-  origin: string,
-) => {
+export const handleWeatherForecastQuery = async (request: Request, env: Env, origin: string) => {
   const url = new URL(request.url);
   const validation = validateQWeatherParams(request, env);
   if (!validation.success) {
     return validation.error;
   }
   const { lon, lat, lang, unit } = validation.data!;
-  const period = url.searchParams.get("period") || "7d";
+  const period = url.searchParams.get('period') || '7d';
   const cacheKey = `qweather_forecast:${lon}:${lat}:${period}:${lang}:${unit}`;
   const cacheTtl = QWEATHER_CACHE_TTL.FORECAST;
   return getResponseData(
@@ -82,11 +68,7 @@ export const handleWeatherForecastQuery = async (
   );
 };
 
-export const handleWeatherIndiceQuery = async (
-  request: Request,
-  env: Env,
-  origin: string,
-) => {
+export const handleWeatherIndiceQuery = async (request: Request, env: Env, origin: string) => {
   const validation = validateQWeatherParams(request, env);
   if (!validation.success) {
     return validation.error;
@@ -106,22 +88,18 @@ export const handleWeatherIndiceQuery = async (
   );
 };
 
-export const handleWeatherAstronomyQuery = async (
-  request: Request,
-  env: Env,
-  origin: string,
-) => {
+export const handleWeatherAstronomyQuery = async (request: Request, env: Env, origin: string) => {
   const url = new URL(request.url);
   const validation = validateQWeatherParams(request, env);
   if (!validation.success) {
     return validation.error;
   }
   const { lon, lat } = validation.data!;
-  const astronomy = url.searchParams.get("astronomy") || "";
-  const date = url.searchParams.get("date") || "";
+  const astronomy = url.searchParams.get('astronomy') || '';
+  const date = url.searchParams.get('date') || '';
   if (!astronomy || !date) {
     return createErrorResponse(
-      "Missing Parameters",
+      'Missing Parameters',
       "Both 'astronomy' and 'date' parameters are required.",
       400,
     );
@@ -140,11 +118,7 @@ export const handleWeatherAstronomyQuery = async (
   );
 };
 
-export const handleWeatherAlertQuery = async (
-  request: Request,
-  env: Env,
-  origin: string,
-) => {
+export const handleWeatherAlertQuery = async (request: Request, env: Env, origin: string) => {
   const validation = validateQWeatherParams(request, env);
   if (!validation.success) {
     return validation.error;
@@ -164,11 +138,7 @@ export const handleWeatherAlertQuery = async (
   );
 };
 
-export const handleWeatherAirQuery = async (
-  request: Request,
-  env: Env,
-  origin: string,
-) => {
+export const handleWeatherAirQuery = async (request: Request, env: Env, origin: string) => {
   const validation = validateQWeatherParams(request, env);
   if (!validation.success) {
     return validation.error;

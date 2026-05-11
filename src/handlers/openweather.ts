@@ -1,31 +1,28 @@
-import { Env } from "@/types/env";
+import { Env } from '@/types/env';
 import {
   OPENWEATHER_BASE_URL,
   OPENWEATHER_MAP_URL,
   OPENWEATHER_CACHE_TTL,
-} from "@/config/providers/openweather";
-import { createErrorResponse } from "@/utils/response";
-import { getResponseData } from "@/utils/cache";
+} from '@/config/providers/openweather';
+import { createErrorResponse } from '@/utils/response';
+import { getResponseData } from '@/utils/cache';
 const validateOpenWeatherParams = (request: Request, env: Env) => {
   if (!env.OPENWEATHER_KEY) {
     return {
       success: false,
-      error: createErrorResponse(
-        "Configuration Error",
-        "OPENWEATHER_KEY is not set",
-      ),
+      error: createErrorResponse('Configuration Error', 'OPENWEATHER_KEY is not set'),
     };
   }
   const url = new URL(request.url);
-  const lon = url.searchParams.get("lon") || "";
-  const lat = url.searchParams.get("lat") || "";
-  const lang = url.searchParams.get("lang") || "zh_cn";
-  const units = url.searchParams.get("units") || "standard";
+  const lon = url.searchParams.get('lon') || '';
+  const lat = url.searchParams.get('lat') || '';
+  const lang = url.searchParams.get('lang') || 'zh_cn';
+  const units = url.searchParams.get('units') || 'standard';
   if (!lon || !lat) {
     return {
       success: false,
       error: createErrorResponse(
-        "Missing Parameters",
+        'Missing Parameters',
         "Both 'lon' and 'lat' parameters are required.",
         400,
       ),
@@ -33,11 +30,7 @@ const validateOpenWeatherParams = (request: Request, env: Env) => {
   }
   return { success: true, data: { lon, lat, lang, units } };
 };
-export const handleWeatherQuery = async (
-  request: Request,
-  env: Env,
-  origin: string,
-) => {
+export const handleWeatherQuery = async (request: Request, env: Env, origin: string) => {
   const validation = validateOpenWeatherParams(request, env);
   if (!validation.success) {
     return validation.error;
@@ -57,12 +50,7 @@ export const handleWeatherQuery = async (
   );
 };
 
-export const handleWeatherForecastQuery = async (
-  request: Request,
-  env: Env,
-  origin: string,
-) => {
-  const url = new URL(request.url);
+export const handleWeatherForecastQuery = async (request: Request, env: Env, origin: string) => {
   const validation = validateOpenWeatherParams(request, env);
   if (!validation.success) {
     return validation.error;
@@ -82,11 +70,7 @@ export const handleWeatherForecastQuery = async (
   );
 };
 
-export const handleWeatherAirQuery = async (
-  request: Request,
-  env: Env,
-  origin: string,
-) => {
+export const handleWeatherAirQuery = async (request: Request, env: Env, origin: string) => {
   const validation = validateOpenWeatherParams(request, env);
   if (!validation.success) {
     return validation.error;
@@ -106,25 +90,18 @@ export const handleWeatherAirQuery = async (
   );
 };
 
-export const handleWeatherMapQuery = async (
-  request: Request,
-  env: Env,
-  origin: string,
-) => {
+export const handleWeatherMapQuery = async (request: Request, env: Env, origin: string) => {
   const url = new URL(request.url);
-  const layer = url.searchParams.get("layer");
-  const x = url.searchParams.get("x");
-  const y = url.searchParams.get("y");
-  const z = url.searchParams.get("z");
+  const layer = url.searchParams.get('layer');
+  const x = url.searchParams.get('x');
+  const y = url.searchParams.get('y');
+  const z = url.searchParams.get('z');
   if (!env.OPENWEATHER_KEY) {
-    return createErrorResponse(
-      "Configuration Error",
-      "OPENWEATHER_KEY is not set",
-    );
+    return createErrorResponse('Configuration Error', 'OPENWEATHER_KEY is not set');
   }
   if (!layer || !x || !y || !z) {
     return createErrorResponse(
-      "Missing Parameters",
+      'Missing Parameters',
       "Both 'layer', 'x', 'y' and 'z' parameters are required.",
       400,
     );
@@ -135,11 +112,8 @@ export const handleWeatherMapQuery = async (
     env,
     cacheKey,
     cacheTtl,
-    () =>
-      fetch(
-        `${OPENWEATHER_MAP_URL}/${layer}/${z}/${x}/${y}.png?appid=${env.OPENWEATHER_KEY}`,
-      ),
+    () => fetch(`${OPENWEATHER_MAP_URL}/${layer}/${z}/${x}/${y}.png?appid=${env.OPENWEATHER_KEY}`),
     origin,
-    "image/png",
+    'image/png',
   );
 };

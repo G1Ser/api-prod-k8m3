@@ -4,14 +4,14 @@
 
 // 标准 JSON 响应头
 const JSON_HEADERS = {
-  "Content-Type": "application/json",
+  'Content-Type': 'application/json',
 };
 
 // 创建 JSON 错误响应
 export function createErrorResponse(
   error: string,
   message: string,
-  status: number = 500
+  status: number = 500,
 ): Response {
   return new Response(JSON.stringify({ error, message }), {
     status,
@@ -22,7 +22,7 @@ export function createErrorResponse(
 // 创建 JSON 成功响应
 export function createSuccessResponse(
   data: any,
-  additionalHeaders?: Record<string, string>
+  additionalHeaders?: Record<string, string>,
 ): Response {
   return new Response(data, {
     status: 200,

@@ -12,7 +12,8 @@ export interface Env {
   // Neon 数据库连接字符串
   NEON_DB_URL: string;
   // 认证Token
-  "X-Webhook-Token": string;
+  'X-Webhook-Token': string;
   // Cloudflare KV 存储
   CACHE: KVNamespace;
+  RESUME: KVNamespace;
 }

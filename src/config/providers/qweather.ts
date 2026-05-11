@@ -1,4 +1,4 @@
-import { HOUR, DAY } from "../constants";
+import { HOUR, DAY } from '../constants';
 import {
   handleWeatherNowQuery,
   handleWeatherForecastQuery,
@@ -6,15 +6,15 @@ import {
   handleWeatherAstronomyQuery,
   handleWeatherAlertQuery,
   handleWeatherAirQuery,
-} from "@/handlers/qweather";
-const QWEATHER_BASE_URL = "https://kp54e4p9fp.re.qweatherapi.com";
+} from '@/handlers/qweather';
+const QWEATHER_BASE_URL = 'https://kp54e4p9fp.re.qweatherapi.com';
 const QWEATHER_ROUTES_MAP = {
-  "/qweather/now": handleWeatherNowQuery,
-  "/qweather/forecast": handleWeatherForecastQuery,
-  "/qweather/indice": handleWeatherIndiceQuery,
-  "/qweather/astronomy": handleWeatherAstronomyQuery,
-  "/qweather/alert": handleWeatherAlertQuery,
-  "/qweather/air": handleWeatherAirQuery,
+  '/qweather/now': handleWeatherNowQuery,
+  '/qweather/forecast': handleWeatherForecastQuery,
+  '/qweather/indice': handleWeatherIndiceQuery,
+  '/qweather/astronomy': handleWeatherAstronomyQuery,
+  '/qweather/alert': handleWeatherAlertQuery,
+  '/qweather/air': handleWeatherAirQuery,
 };
 const QWEATHER_CACHE_TTL = {
   NOW: {

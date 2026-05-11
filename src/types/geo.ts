@@ -17,7 +17,7 @@ export interface GeoLocation {
   adcode?: string | null;
 }
 
-export interface GeoType extends Omit<GeoLocation, "display" | "display_zh"> {
+export interface GeoType extends Omit<GeoLocation, 'display' | 'display_zh'> {
   level: string;
   adm0_id: number;
   adm1_id: number;

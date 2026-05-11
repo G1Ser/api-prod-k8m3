@@ -1,4 +1,4 @@
-# 天气预报后端项目（已归档 2026/3/26）
+# 后端项目（已归档 2026/3/26）
 
 ### 项目目录结构
 
@@ -8,8 +8,7 @@ src/
 │   ├── constants.ts           # 常量配置（缓存时间、路由映射）
 │   ├── router.ts              # 全量后端接口路由
 │   └── providers/             # API 提供商的基础配置
-├── geojson/
-│   └── map.json               # 中国行政边界数据
+├── json/                      # json数据
 ├── handlers/
 │   ├── amap.ts                # 高度地图API
 │   ├── bmap.ts                # 百度地图API

@@ -1,8 +1,8 @@
-import { HOUR } from "../constants";
-import { handleWeatherQuery } from "@/handlers/bmap";
-const BMAP_BASE_URL = "https://api.map.baidu.com";
+import { HOUR } from '../constants';
+import { handleWeatherQuery } from '@/handlers/bmap';
+const BMAP_BASE_URL = 'https://api.map.baidu.com';
 const BMAP_ROUTES_MAP = {
-  "/bmap/weather": handleWeatherQuery,
+  '/bmap/weather': handleWeatherQuery,
 };
 const BMAP_CACHE_TTL = {
   WEATHER: {

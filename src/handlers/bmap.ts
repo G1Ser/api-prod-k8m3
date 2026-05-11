@@ -1,36 +1,29 @@
-import { Env } from "@/types/env";
-import { BMAP_BASE_URL, BMAP_CACHE_TTL } from "@/config/providers/bmap";
-import { createErrorResponse } from "@/utils/response";
-import { getResponseData } from "@/utils/cache";
-import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import { point } from "@turf/helpers";
-import type { Feature, MultiPolygon } from "geojson";
-import MapGeoJSON from "@/geojson/map.json";
+import { Env } from '@/types/env';
+import { BMAP_BASE_URL, BMAP_CACHE_TTL } from '@/config/providers/bmap';
+import { createErrorResponse } from '@/utils/response';
+import { getResponseData } from '@/utils/cache';
+import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
+import { point } from '@turf/helpers';
+import type { Feature, MultiPolygon } from 'geojson';
+import MapGeoJSON from '@/json/map.json';
 
-export const handleWeatherQuery = async (
-  request: Request,
-  env: Env,
-  origin: string,
-) => {
+export const handleWeatherQuery = async (request: Request, env: Env, origin: string) => {
   if (!env.BMAP_KEY) {
-    return createErrorResponse("Configuration Error", "BMAP_KEY is not set");
+    return createErrorResponse('Configuration Error', 'BMAP_KEY is not set');
   }
   const url = new URL(request.url);
-  const lon = url.searchParams.get("lon") || "";
-  const lat = url.searchParams.get("lat") || "";
+  const lon = url.searchParams.get('lon') || '';
+  const lat = url.searchParams.get('lat') || '';
   if (!lon || !lat) {
     return createErrorResponse(
-      "Missing Parameters",
+      'Missing Parameters',
       "Both 'lon' and 'lat' parameters are required.",
       400,
     );
   }
   const cacheKey = `bmap_weather:${lon}:${lat}`;
   const pt = point([parseFloat(lon), parseFloat(lat)]);
-  const isInChina = booleanPointInPolygon(
-    pt,
-    MapGeoJSON.features[0] as Feature<MultiPolygon>,
-  );
+  const isInChina = booleanPointInPolygon(pt, MapGeoJSON.features[0] as Feature<MultiPolygon>);
   let fn;
   if (isInChina) {
     fn = fetch(

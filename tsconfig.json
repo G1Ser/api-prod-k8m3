@@ -6,9 +6,8 @@
     "strict": true,
     "types": ["@cloudflare/workers-types"],
     "outDir": "./dist",
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     },
     "moduleResolution": "bundler",
     "skipLibCheck": true,

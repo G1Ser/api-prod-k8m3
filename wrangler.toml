@@ -5,3 +5,7 @@ compatibility_date = "2025-11-22"
 [[kv_namespaces]]
 binding = "CACHE"
 id = "83c60cea874343a490a9ee7201f25439"
+
+[[kv_namespaces]]
+binding = "RESUME"
+id = "2650c2a665a24482884c4eaa52162185"
