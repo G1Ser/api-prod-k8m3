@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>天气 API 文档</title>
+    <title>后端 API 文档</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="./favicon.ico" />
@@ -11,9 +11,9 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "天气 API",
+    "title": "后端 API",
     "version": "1.0.0",
-    "description": "天气数据聚合 API 代理服务，统一代理高德地图、百度地图、和风天气、OpenWeather 等服务，提供缓存加速与 API Key 隐藏。"
+    "description": "我的后端API接口文档"
   },
   "servers": [
     {
@@ -45,6 +45,10 @@
     {
       "name": "OpenWeather",
       "description": "OpenWeather API（全国天气、预报、空气质量、地图瓦片）"
+    },
+    {
+      "name": "Portfolio",
+      "description": "资产项目 API（资产数据获取）"
     }
   ],
   "paths": {
@@ -383,6 +387,43 @@
         }
       }
     },
+    "/portfolio/assets": {
+      "get": {
+        "summary": "资产获取",
+        "tags": [
+          "Portfolio"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "type",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Draft",
+                "Icon",
+                "KOFWarrior",
+                "MetalSlugCommander",
+                "TopGirl"
+              ],
+              "example": "Icon"
+            },
+            "description": "资产类型"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功返回资产列表"
+          },
+          "400": {
+            "description": "缺少必要参数"
+          },
+          "403": {
+            "description": "请求来源不在白名单"
+          }
+        }
+      }
+    },
     "/qweather/now": {
       "get": {
         "summary": "和风天气实况",
@@ -520,7 +561,7 @@
               ],
               "example": "sun"
             },
-            "description": "天文类型，sun=日出日落，moon=月相"
+            "description": "天文类型，sun=日出日落 moon=月相"
           },
           {
             "in": "query",
@@ -644,10 +685,13 @@
         "name": "lang",
         "schema": {
           "type": "string",
-          "default": "zh",
-          "example": "zh"
+          "enum": [
+            "zh",
+            "en"
+          ],
+          "default": "zh"
         },
-        "description": "返回语言（zh / en）"
+        "description": "返回语言, zh=中文 en=英文"
       },
       "Units": {
         "in": "query",
@@ -661,7 +705,7 @@
           ],
           "default": "standard"
         },
-        "description": "单位制，standard=开尔文，metric=摄氏度，imperial=华氏度"
+        "description": "单位制，standard=开尔文 metric=摄氏度 imperial=华氏度"
       },
       "Unit": {
         "in": "query",
