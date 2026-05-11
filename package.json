@@ -1,13 +1,13 @@
 {
-  "name": "wt-prod-k8m3",
-  "version": "1.0.0",
-  "description": "天气项目 API 文档生成",
+  "name": "api-prod-k8m3",
+  "version": "2.0.0",
+  "description": "后端 API 文档生成",
   "type": "module",
   "author": "chauncey",
   "scripts": {
     "swagger": "node scripts/generate-swagger.mjs"
   },
   "devDependencies": {
-    "swagger-jsdoc": "^6.2.8"
+    "swagger-jsdoc": "6.2.8"
   }
 }

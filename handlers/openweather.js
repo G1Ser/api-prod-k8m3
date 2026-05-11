@@ -23,9 +23,9 @@
  *       name: lang
  *       schema:
  *         type: string
+ *         enum: [zh_cn, en]
  *         default: zh_cn
- *         example: zh_cn
- *       description: 返回语言（zh_cn / en / ...）
+ *       description: 返回语言, zh_cn=中文 en=英文
  *     Units:
  *       in: query
  *       name: units
@@ -33,7 +33,7 @@
  *         type: string
  *         enum: [standard, metric, imperial]
  *         default: standard
- *       description: 单位制，standard=开尔文，metric=摄氏度，imperial=华氏度
+ *       description: 单位制，standard=开尔文 metric=摄氏度 imperial=华氏度
  */
 
 /**

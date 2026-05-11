@@ -9,10 +9,9 @@ const options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "天气 API",
+      title: "后端 API",
       version: "1.0.0",
-      description:
-        "天气数据聚合 API 代理服务，统一代理高德地图、百度地图、和风天气、OpenWeather 等服务，提供缓存加速与 API Key 隐藏。",
+      description: "我的后端API接口文档",
     },
     servers: [
       {
@@ -34,6 +33,10 @@ const options = {
         name: "OpenWeather",
         description: "OpenWeather API（全国天气、预报、空气质量、地图瓦片）",
       },
+      {
+        name: "Portfolio",
+        description: "资产项目 API（资产数据获取）",
+      },
     ],
   },
   apis: [join(__dirname, "../handlers/*.js")],
@@ -52,7 +55,7 @@ copyFileSync(
 const htmlOutput = `<!doctype html>
 <html>
   <head>
-    <title>天气 API 文档</title>
+    <title>后端 API 文档</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="./favicon.ico" />

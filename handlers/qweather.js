@@ -23,9 +23,9 @@
  *       name: lang
  *       schema:
  *         type: string
+ *         enum: [zh, en]
  *         default: zh
- *         example: zh
- *       description: 返回语言（zh / en）
+ *       description: 返回语言, zh=中文 en=英文
  *     Unit:
  *       in: query
  *       name: unit
@@ -118,7 +118,7 @@
  *           type: string
  *           enum: [sun, moon]
  *           example: sun
- *         description: 天文类型，sun=日出日落，moon=月相
+ *         description: 天文类型，sun=日出日落 moon=月相
  *       - in: query
  *         name: date
  *         required: true
