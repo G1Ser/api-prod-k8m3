@@ -8,7 +8,7 @@ const CORS_ORIGINS = [
   'https://weatherv2.chauncey.work',
   'https://weatherv3.chauncey.work',
   'https://weatherv4.chauncey.work',
-  'https://weather-api.chauncey.work',
+  'https://api.chauncey.work',
 ];
 // n8n 接口网址
 const N8N_BASE_URL = 'https://n8n.chauncey.work/webhook';
